@@ -1,0 +1,356 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1604864915D291E70048BF64 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1604864815D291E70048BF64 /* UIKit.framework */; };
+		1604864B15D291E70048BF64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1604864A15D291E70048BF64 /* Foundation.framework */; };
+		1604864D15D291E70048BF64 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1604864C15D291E70048BF64 /* CoreGraphics.framework */; };
+		1604865315D291E70048BF64 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1604865115D291E70048BF64 /* InfoPlist.strings */; };
+		1604865515D291E70048BF64 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1604865415D291E70048BF64 /* main.m */; };
+		1604865915D291E70048BF64 /* SegAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1604865815D291E70048BF64 /* SegAppDelegate.m */; };
+		1604865C15D291E70048BF64 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1604865A15D291E70048BF64 /* MainStoryboard.storyboard */; };
+		1604865F15D291E70048BF64 /* SegViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1604865E15D291E70048BF64 /* SegViewController.m */; };
+		1604866615D292650048BF64 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1604866515D292650048BF64 /* Security.framework */; };
+		16CE9B6615E38070004471EF /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16CE9B6515E38070004471EF /* libcrypto.a */; };
+		16D8EFB415E2A46A004A40A5 /* SegCapi.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D8EFB315E2A46A004A40A5 /* SegCapi.m */; };
+		16D8EFBA15E2ACB3004A40A5 /* CapiOnEay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D8EFB815E2ACB3004A40A5 /* CapiOnEay.cpp */; };
+		16D8EFBE15E2BD74004A40A5 /* EayP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D8EFBD15E2BD74004A40A5 /* EayP.cpp */; };
+		16FD615615E21DAA00AB8619 /* CryptoData.c in Sources */ = {isa = PBXBuildFile; fileRef = 16FD615415E21DAA00AB8619 /* CryptoData.c */; };
+		16FD616215E224B400AB8619 /* ImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FD616115E224B400AB8619 /* ImportViewController.m */; };
+		16FD616515E2259700AB8619 /* GenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FD616415E2259700AB8619 /* GenViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1604864415D291E70048BF64 /* SecGames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecGames.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1604864815D291E70048BF64 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1604864A15D291E70048BF64 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1604864C15D291E70048BF64 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1604865015D291E70048BF64 /* SecGames-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SecGames-Info.plist"; sourceTree = "<group>"; };
+		1604865215D291E70048BF64 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1604865415D291E70048BF64 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1604865615D291E70048BF64 /* SecGames-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SecGames-Prefix.pch"; sourceTree = "<group>"; };
+		1604865715D291E70048BF64 /* SegAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegAppDelegate.h; sourceTree = "<group>"; };
+		1604865815D291E70048BF64 /* SegAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegAppDelegate.m; sourceTree = "<group>"; };
+		1604865B15D291E70048BF64 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		1604865D15D291E70048BF64 /* SegViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegViewController.h; sourceTree = "<group>"; };
+		1604865E15D291E70048BF64 /* SegViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegViewController.m; sourceTree = "<group>"; };
+		1604866515D292650048BF64 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		16CE9B6515E38070004471EF /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../3rd/openssl/lib/libcrypto.a; sourceTree = "<group>"; };
+		16D8EFB215E2A46A004A40A5 /* SegCapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegCapi.h; sourceTree = "<group>"; };
+		16D8EFB315E2A46A004A40A5 /* SegCapi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegCapi.m; sourceTree = "<group>"; };
+		16D8EFB815E2ACB3004A40A5 /* CapiOnEay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CapiOnEay.cpp; sourceTree = "<group>"; };
+		16D8EFB915E2ACB3004A40A5 /* CapiOnEay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapiOnEay.h; sourceTree = "<group>"; };
+		16D8EFBC15E2B837004A40A5 /* EayP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EayP.h; sourceTree = "<group>"; };
+		16D8EFBD15E2BD74004A40A5 /* EayP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EayP.cpp; sourceTree = "<group>"; };
+		16FD615415E21DAA00AB8619 /* CryptoData.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CryptoData.c; sourceTree = "<group>"; };
+		16FD615515E21DAA00AB8619 /* CryptoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptoData.h; sourceTree = "<group>"; };
+		16FD616015E224B400AB8619 /* ImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportViewController.h; sourceTree = "<group>"; };
+		16FD616115E224B400AB8619 /* ImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportViewController.m; sourceTree = "<group>"; };
+		16FD616315E2259700AB8619 /* GenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenViewController.h; sourceTree = "<group>"; };
+		16FD616415E2259700AB8619 /* GenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1604864115D291E70048BF64 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16CE9B6615E38070004471EF /* libcrypto.a in Frameworks */,
+				1604866615D292650048BF64 /* Security.framework in Frameworks */,
+				1604864915D291E70048BF64 /* UIKit.framework in Frameworks */,
+				1604864B15D291E70048BF64 /* Foundation.framework in Frameworks */,
+				1604864D15D291E70048BF64 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1604863915D291E70048BF64 = {
+			isa = PBXGroup;
+			children = (
+				16CE9B6515E38070004471EF /* libcrypto.a */,
+				1604866515D292650048BF64 /* Security.framework */,
+				1604864E15D291E70048BF64 /* SecGames */,
+				1604864715D291E70048BF64 /* Frameworks */,
+				1604864515D291E70048BF64 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1604864515D291E70048BF64 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1604864415D291E70048BF64 /* SecGames.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1604864715D291E70048BF64 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1604864815D291E70048BF64 /* UIKit.framework */,
+				1604864A15D291E70048BF64 /* Foundation.framework */,
+				1604864C15D291E70048BF64 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1604864E15D291E70048BF64 /* SecGames */ = {
+			isa = PBXGroup;
+			children = (
+				16D8EFBB15E2B22A004A40A5 /* CapiOnEap */,
+				16FD615415E21DAA00AB8619 /* CryptoData.c */,
+				16FD615515E21DAA00AB8619 /* CryptoData.h */,
+				1604865715D291E70048BF64 /* SegAppDelegate.h */,
+				1604865815D291E70048BF64 /* SegAppDelegate.m */,
+				1604865A15D291E70048BF64 /* MainStoryboard.storyboard */,
+				1604865D15D291E70048BF64 /* SegViewController.h */,
+				1604865E15D291E70048BF64 /* SegViewController.m */,
+				16FD616015E224B400AB8619 /* ImportViewController.h */,
+				16FD616115E224B400AB8619 /* ImportViewController.m */,
+				16FD616315E2259700AB8619 /* GenViewController.h */,
+				16FD616415E2259700AB8619 /* GenViewController.m */,
+				16D8EFB215E2A46A004A40A5 /* SegCapi.h */,
+				16D8EFB315E2A46A004A40A5 /* SegCapi.m */,
+				1604864F15D291E70048BF64 /* Supporting Files */,
+			);
+			path = SecGames;
+			sourceTree = "<group>";
+		};
+		1604864F15D291E70048BF64 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1604865015D291E70048BF64 /* SecGames-Info.plist */,
+				1604865115D291E70048BF64 /* InfoPlist.strings */,
+				1604865415D291E70048BF64 /* main.m */,
+				1604865615D291E70048BF64 /* SecGames-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		16D8EFBB15E2B22A004A40A5 /* CapiOnEap */ = {
+			isa = PBXGroup;
+			children = (
+				16D8EFB815E2ACB3004A40A5 /* CapiOnEay.cpp */,
+				16D8EFB915E2ACB3004A40A5 /* CapiOnEay.h */,
+				16D8EFBC15E2B837004A40A5 /* EayP.h */,
+				16D8EFBD15E2BD74004A40A5 /* EayP.cpp */,
+			);
+			name = CapiOnEap;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1604864315D291E70048BF64 /* SecGames */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1604866215D291E70048BF64 /* Build configuration list for PBXNativeTarget "SecGames" */;
+			buildPhases = (
+				1604864015D291E70048BF64 /* Sources */,
+				1604864115D291E70048BF64 /* Frameworks */,
+				1604864215D291E70048BF64 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SecGames;
+			productName = SecGames;
+			productReference = 1604864415D291E70048BF64 /* SecGames.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1604863B15D291E70048BF64 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Seg;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Uri London";
+			};
+			buildConfigurationList = 1604863E15D291E70048BF64 /* Build configuration list for PBXProject "SecGames" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1604863915D291E70048BF64;
+			productRefGroup = 1604864515D291E70048BF64 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1604864315D291E70048BF64 /* SecGames */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1604864215D291E70048BF64 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1604865315D291E70048BF64 /* InfoPlist.strings in Resources */,
+				1604865C15D291E70048BF64 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1604864015D291E70048BF64 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1604865515D291E70048BF64 /* main.m in Sources */,
+				1604865915D291E70048BF64 /* SegAppDelegate.m in Sources */,
+				1604865F15D291E70048BF64 /* SegViewController.m in Sources */,
+				16FD615615E21DAA00AB8619 /* CryptoData.c in Sources */,
+				16FD616215E224B400AB8619 /* ImportViewController.m in Sources */,
+				16FD616515E2259700AB8619 /* GenViewController.m in Sources */,
+				16D8EFB415E2A46A004A40A5 /* SegCapi.m in Sources */,
+				16D8EFBA15E2ACB3004A40A5 /* CapiOnEay.cpp in Sources */,
+				16D8EFBE15E2BD74004A40A5 /* EayP.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1604865115D291E70048BF64 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1604865215D291E70048BF64 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1604865A15D291E70048BF64 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1604865B15D291E70048BF64 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1604866015D291E70048BF64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1604866115D291E70048BF64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1604866315D291E70048BF64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SecGames/SecGames-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/Users/uri/t/gh/OpenSSL-for-iPhone/include";
+				INFOPLIST_FILE = "SecGames/SecGames-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../3rd/openssl/lib\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1604866415D291E70048BF64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SecGames/SecGames-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/Users/uri/t/gh/OpenSSL-for-iPhone/include";
+				INFOPLIST_FILE = "SecGames/SecGames-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../3rd/openssl/lib\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1604863E15D291E70048BF64 /* Build configuration list for PBXProject "SecGames" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1604866015D291E70048BF64 /* Debug */,
+				1604866115D291E70048BF64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1604866215D291E70048BF64 /* Build configuration list for PBXNativeTarget "SecGames" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1604866315D291E70048BF64 /* Debug */,
+				1604866415D291E70048BF64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1604863B15D291E70048BF64 /* Project object */;
+}
