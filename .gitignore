@@ -19,8 +19,6 @@ Debug/
 Release/
 ipch/
 
-FbChat/srv/Bin/
-Rasta/SimpleREST/bin/
-Amnon/Server/symbols/
+*.xcuserstate
 
-
+.DS_Store
