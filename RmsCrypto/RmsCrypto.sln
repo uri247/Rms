@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CryptoStart", "CryptoStart\CryptoStart.vcxproj", "{CD4E0C43-BD38-4EEC-A2FE-2D05859B3E14}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoadCryptoData", "LoadCryptoData\LoadCryptoData.vcxproj", "{D757E689-5F6C-44D8-8039-755173CEEA69}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CD4E0C43-BD38-4EEC-A2FE-2D05859B3E14} = {CD4E0C43-BD38-4EEC-A2FE-2D05859B3E14}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD4E0C43-BD38-4EEC-A2FE-2D05859B3E14}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CD4E0C43-BD38-4EEC-A2FE-2D05859B3E14}.Debug|Win32.Build.0 = Debug|Win32
+		{CD4E0C43-BD38-4EEC-A2FE-2D05859B3E14}.Release|Win32.ActiveCfg = Release|Win32
+		{CD4E0C43-BD38-4EEC-A2FE-2D05859B3E14}.Release|Win32.Build.0 = Release|Win32
+		{D757E689-5F6C-44D8-8039-755173CEEA69}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D757E689-5F6C-44D8-8039-755173CEEA69}.Debug|Win32.Build.0 = Debug|Win32
+		{D757E689-5F6C-44D8-8039-755173CEEA69}.Release|Win32.ActiveCfg = Release|Win32
+		{D757E689-5F6C-44D8-8039-755173CEEA69}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
