@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="CryptoData.h" />
+    <ClInclude Include="AutoOpenssl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />

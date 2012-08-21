@@ -59,7 +59,7 @@ int wmain( int argc, wchar_t* argv[] )
 
 
     // Delete previous key set
-    br << CryptAcquireContext( &hprov, NULL, NULL, PROV_RSA_AES, CRYPT_DELETEKEYSET );
+    br = CryptAcquireContext( &hprov, NULL, NULL, PROV_RSA_AES, CRYPT_DELETEKEYSET );
 
     // Get default provider for RSA/AES
     br << CryptAcquireContext( &hprov, NULL, NULL, PROV_RSA_AES, CRYPT_NEWKEYSET );

@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "../CryptoStart/AutoHandle.h"
 #include "../CryptoStart/AutoResult.h"
+#include "AutoOpenssl.h"
 #include "CryptoData.h"
 
 void theCapiWay( );
@@ -81,9 +82,8 @@ int lend_tobn( BIGNUM *bn, unsigned char *bin, int binlen )
 
 void opensslRsa( )
 {
-    RSA* rsa;
+    std::unique_ptr< RSA, RsaDeleter > rsa( RSA_new() );
 
-    rsa = RSA_new( );
     rsa->n = BN_new( );
     rsa->e = BN_new( );
     rsa->d = BN_new( );
@@ -110,11 +110,11 @@ void opensslRsa( )
         input[i] = rsaMsg.cipher[rsaMsg.size-i-1];
     }
 
-    RSA_private_decrypt( rsaMsg.size, input.get(), output.get(), rsa, RSA_PKCS1_OAEP_PADDING );
+    RSA_private_decrypt( rsaMsg.size, input.get(), output.get(), rsa.get(), RSA_PKCS1_OAEP_PADDING );
     
     std::cout << "openssl rsa message: " << (char*)output.get() << std::endl;
 
-    RSA_free( rsa );
+    //RSA_free( rsa );
 
 }
 

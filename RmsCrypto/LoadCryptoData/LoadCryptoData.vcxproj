@@ -75,6 +75,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AutoOpenssl.h" />
     <ClInclude Include="CryptoData.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

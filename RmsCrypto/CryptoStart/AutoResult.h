@@ -27,6 +27,11 @@ public:
             throw Win32Exception(gle);
         }
     }
+
+    BOOL operator=( BOOL result ) {
+        // do nothing
+        return result;
+    }
 };
 
 
