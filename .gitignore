@@ -1,0 +1,26 @@
+#.gitignore file
+
+*.opensdf
+*.sdf
+*.user
+*.suo
+*.pyc
+*_i.c
+*_i.h
+*_p.c
+*.aps
+dlldata.c
+
+.gitignore~
+.gitignore.swp
+.metadata/
+
+Debug/
+Release/
+ipch/
+
+FbChat/srv/Bin/
+Rasta/SimpleREST/bin/
+Amnon/Server/symbols/
+
+
