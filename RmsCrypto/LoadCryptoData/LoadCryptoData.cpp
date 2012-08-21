@@ -78,11 +78,19 @@ int lend_tobn( BIGNUM *bn, unsigned char *bin, int binlen )
     return ret;
 }
 
+void saveBuffToFile( BUF_MEM* buff, const char* fname )
+{
+    std::ofstream os( fname, std::ofstream::binary );
+    os.write( buff->data, buff->length );
+    os.close( );
+}
+
 
 
 void opensslRsa( )
 {
     std::unique_ptr< RSA, RsaDeleter > rsa( RSA_new() );
+    int result;
 
     rsa->n = BN_new( );
     rsa->e = BN_new( );
@@ -114,7 +122,22 @@ void opensslRsa( )
     
     std::cout << "openssl rsa message: " << (char*)output.get() << std::endl;
 
-    //RSA_free( rsa );
+
+    // Do some savings
+    BIO* biomem;
+    BUF_MEM* buff;
+
+    biomem = BIO_new( BIO_s_mem() );
+    result = PEM_write_bio_RSAPrivateKey( biomem, rsa.get(), NULL, NULL, 0, NULL, NULL );
+    BIO_get_mem_ptr(biomem, &buff);
+    saveBuffToFile( buff, "priv.pem" );
+    BIO_free(biomem);
+        
+    biomem = BIO_new( BIO_s_mem() );
+    result = PEM_write_bio_RSAPublicKey( biomem, rsa.get() );
+    BIO_get_mem_ptr(biomem, &buff);
+    saveBuffToFile( buff, "pub.pem" );
+    BIO_free(biomem);
 
 }
 
