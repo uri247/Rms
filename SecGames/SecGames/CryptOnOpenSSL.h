@@ -15,17 +15,17 @@
 #include "Crypt.h"
 
 
-class RsaKey : public Key
+class ossl_RsaKey : public Key
 {
 private:
     RSA* m_eayRsa;
     
 public:
-    RsaKey( BYTE* pdata, DWORD dataLen, DWORD flags );
+    ossl_RsaKey( BYTE* pdata, DWORD dataLen, DWORD flags );
     virtual void Decrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen );
     virtual void Encrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen, DWORD bufLen );
     
-    ~RsaKey( );
+    ~ossl_RsaKey( );
 };
 
 

@@ -26,7 +26,7 @@ int lend_tobn( BIGNUM *bn, unsigned char *bin, int binlen )
 
 
 
-RsaKey::RsaKey( BYTE* pdata, DWORD dataLen, DWORD flags )
+ossl_RsaKey::ossl_RsaKey( BYTE* pdata, DWORD dataLen, DWORD flags )
 {
     RSA* rsa;
     
@@ -54,14 +54,14 @@ RsaKey::RsaKey( BYTE* pdata, DWORD dataLen, DWORD flags )
     this->m_eayRsa = rsa;
 }
 
-RsaKey::~RsaKey( )
+ossl_RsaKey::~ossl_RsaKey( )
 {
     RSA_free( m_eayRsa );
     m_eayRsa = NULL;
 }
 
 void
-RsaKey::Decrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen )
+ossl_RsaKey::Decrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen )
 {
     DWORD dataLen = *pdataLen;
     std::unique_ptr<BYTE[]> input( new BYTE[dataLen] );
@@ -80,7 +80,7 @@ RsaKey::Decrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen )
 
 
 void
-RsaKey::Encrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen, DWORD bufLen )
+ossl_RsaKey::Encrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen, DWORD bufLen )
 {
     return;
 }

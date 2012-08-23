@@ -34,6 +34,9 @@ template<class KEY>
 class ContextType : public CryptBase
 {
 public:
+    typedef KEY KeyType;
+    
+public:
     ContextType( ) : CryptBase(magic_Context) { }
     KEY* importKey( BYTE* pdata, DWORD dataLen, DWORD flags ) {
         return new KEY( pdata, dataLen, flags );
