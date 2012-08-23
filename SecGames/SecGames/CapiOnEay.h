@@ -9,13 +9,7 @@
 #ifndef __SecGames__CapiOnEay__
 #define __SecGames__CapiOnEay__
 
-
-typedef unsigned long HANDLE;
-typedef HANDLE HCRYPTPROV;
-typedef HANDLE HCRYPTKEY;
-typedef unsigned char BYTE;
-typedef unsigned short WORD;
-typedef unsigned long DWORD;
+#include "windef.h"
 
 #ifdef __cplusplus
 extern "C" {

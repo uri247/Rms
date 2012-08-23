@@ -41,6 +41,7 @@
 		1604865E15D291E70048BF64 /* SegViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegViewController.m; sourceTree = "<group>"; };
 		1604866515D292650048BF64 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		16CE9B6515E38070004471EF /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../3rd/openssl/lib/libcrypto.a; sourceTree = "<group>"; };
+		16CE9B7715E3C98B004471EF /* windef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = windef.h; sourceTree = "<group>"; };
 		16D8EFB215E2A46A004A40A5 /* SegCapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegCapi.h; sourceTree = "<group>"; };
 		16D8EFB315E2A46A004A40A5 /* SegCapi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegCapi.m; sourceTree = "<group>"; };
 		16D8EFB815E2ACB3004A40A5 /* CapiOnEay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CapiOnEay.cpp; sourceTree = "<group>"; };
@@ -118,6 +119,7 @@
 				16D8EFB215E2A46A004A40A5 /* SegCapi.h */,
 				16D8EFB315E2A46A004A40A5 /* SegCapi.m */,
 				1604864F15D291E70048BF64 /* Supporting Files */,
+				16CE9B7715E3C98B004471EF /* windef.h */,
 			);
 			path = SecGames;
 			sourceTree = "<group>";

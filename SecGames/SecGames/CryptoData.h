@@ -1,12 +1,10 @@
 
+#include "windef.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef unsigned char BYTE;
-typedef unsigned short WORD;
-typedef unsigned long DWORD;
-typedef unsigned int ALG_ID;
 
 
 struct CSymmetricKeyExtract {
