@@ -17,9 +17,11 @@
 		1604865F15D291E70048BF64 /* SegViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1604865E15D291E70048BF64 /* SegViewController.m */; };
 		1604866615D292650048BF64 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1604866515D292650048BF64 /* Security.framework */; };
 		16CE9B6615E38070004471EF /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16CE9B6515E38070004471EF /* libcrypto.a */; };
+		16CE9BB215E63B61004471EF /* CryptOnOpenSSL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE9BB015E63B61004471EF /* CryptOnOpenSSL.cpp */; };
+		16CE9BB515E63B88004471EF /* CryptOnKeychain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE9BB315E63B88004471EF /* CryptOnKeychain.cpp */; };
 		16D8EFB415E2A46A004A40A5 /* SegCapi.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D8EFB315E2A46A004A40A5 /* SegCapi.m */; };
-		16D8EFBA15E2ACB3004A40A5 /* CapiOnEay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D8EFB815E2ACB3004A40A5 /* CapiOnEay.cpp */; };
-		16D8EFBE15E2BD74004A40A5 /* EayP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D8EFBD15E2BD74004A40A5 /* EayP.cpp */; };
+		16D8EFBA15E2ACB3004A40A5 /* CryptInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D8EFB815E2ACB3004A40A5 /* CryptInterface.cpp */; };
+		16D8EFBE15E2BD74004A40A5 /* Crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D8EFBD15E2BD74004A40A5 /* Crypt.cpp */; };
 		16FD615615E21DAA00AB8619 /* CryptoData.c in Sources */ = {isa = PBXBuildFile; fileRef = 16FD615415E21DAA00AB8619 /* CryptoData.c */; };
 		16FD616215E224B400AB8619 /* ImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FD616115E224B400AB8619 /* ImportViewController.m */; };
 		16FD616515E2259700AB8619 /* GenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FD616415E2259700AB8619 /* GenViewController.m */; };
@@ -42,12 +44,16 @@
 		1604866515D292650048BF64 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		16CE9B6515E38070004471EF /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../3rd/openssl/lib/libcrypto.a; sourceTree = "<group>"; };
 		16CE9B7715E3C98B004471EF /* windef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = windef.h; sourceTree = "<group>"; };
+		16CE9BB015E63B61004471EF /* CryptOnOpenSSL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CryptOnOpenSSL.cpp; sourceTree = "<group>"; };
+		16CE9BB115E63B61004471EF /* CryptOnOpenSSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptOnOpenSSL.h; sourceTree = "<group>"; };
+		16CE9BB315E63B88004471EF /* CryptOnKeychain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CryptOnKeychain.cpp; sourceTree = "<group>"; };
+		16CE9BB415E63B88004471EF /* CryptOnKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptOnKeychain.h; sourceTree = "<group>"; };
 		16D8EFB215E2A46A004A40A5 /* SegCapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegCapi.h; sourceTree = "<group>"; };
 		16D8EFB315E2A46A004A40A5 /* SegCapi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegCapi.m; sourceTree = "<group>"; };
-		16D8EFB815E2ACB3004A40A5 /* CapiOnEay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CapiOnEay.cpp; sourceTree = "<group>"; };
-		16D8EFB915E2ACB3004A40A5 /* CapiOnEay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapiOnEay.h; sourceTree = "<group>"; };
-		16D8EFBC15E2B837004A40A5 /* EayP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EayP.h; sourceTree = "<group>"; };
-		16D8EFBD15E2BD74004A40A5 /* EayP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EayP.cpp; sourceTree = "<group>"; };
+		16D8EFB815E2ACB3004A40A5 /* CryptInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CryptInterface.cpp; sourceTree = "<group>"; };
+		16D8EFB915E2ACB3004A40A5 /* CryptInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptInterface.h; sourceTree = "<group>"; };
+		16D8EFBC15E2B837004A40A5 /* Crypt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Crypt.h; sourceTree = "<group>"; };
+		16D8EFBD15E2BD74004A40A5 /* Crypt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Crypt.cpp; sourceTree = "<group>"; };
 		16FD615415E21DAA00AB8619 /* CryptoData.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CryptoData.c; sourceTree = "<group>"; };
 		16FD615515E21DAA00AB8619 /* CryptoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptoData.h; sourceTree = "<group>"; };
 		16FD616015E224B400AB8619 /* ImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportViewController.h; sourceTree = "<group>"; };
@@ -104,7 +110,7 @@
 		1604864E15D291E70048BF64 /* SecGames */ = {
 			isa = PBXGroup;
 			children = (
-				16D8EFBB15E2B22A004A40A5 /* CapiOnEap */,
+				16D8EFBB15E2B22A004A40A5 /* Crypt */,
 				16FD615415E21DAA00AB8619 /* CryptoData.c */,
 				16FD615515E21DAA00AB8619 /* CryptoData.h */,
 				1604865715D291E70048BF64 /* SegAppDelegate.h */,
@@ -135,15 +141,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		16D8EFBB15E2B22A004A40A5 /* CapiOnEap */ = {
+		16D8EFBB15E2B22A004A40A5 /* Crypt */ = {
 			isa = PBXGroup;
 			children = (
-				16D8EFB815E2ACB3004A40A5 /* CapiOnEay.cpp */,
-				16D8EFB915E2ACB3004A40A5 /* CapiOnEay.h */,
-				16D8EFBC15E2B837004A40A5 /* EayP.h */,
-				16D8EFBD15E2BD74004A40A5 /* EayP.cpp */,
+				16D8EFB815E2ACB3004A40A5 /* CryptInterface.cpp */,
+				16D8EFB915E2ACB3004A40A5 /* CryptInterface.h */,
+				16D8EFBC15E2B837004A40A5 /* Crypt.h */,
+				16D8EFBD15E2BD74004A40A5 /* Crypt.cpp */,
+				16CE9BB015E63B61004471EF /* CryptOnOpenSSL.cpp */,
+				16CE9BB115E63B61004471EF /* CryptOnOpenSSL.h */,
+				16CE9BB315E63B88004471EF /* CryptOnKeychain.cpp */,
+				16CE9BB415E63B88004471EF /* CryptOnKeychain.h */,
 			);
-			name = CapiOnEap;
+			name = Crypt;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,8 +227,10 @@
 				16FD616215E224B400AB8619 /* ImportViewController.m in Sources */,
 				16FD616515E2259700AB8619 /* GenViewController.m in Sources */,
 				16D8EFB415E2A46A004A40A5 /* SegCapi.m in Sources */,
-				16D8EFBA15E2ACB3004A40A5 /* CapiOnEay.cpp in Sources */,
-				16D8EFBE15E2BD74004A40A5 /* EayP.cpp in Sources */,
+				16D8EFBA15E2ACB3004A40A5 /* CryptInterface.cpp in Sources */,
+				16D8EFBE15E2BD74004A40A5 /* Crypt.cpp in Sources */,
+				16CE9BB215E63B61004471EF /* CryptOnOpenSSL.cpp in Sources */,
+				16CE9BB515E63B88004471EF /* CryptOnKeychain.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 
 #import "ImportViewController.h"
 #import "CryptoData.h"
-#import "CapiOnEay.h"
+#import "CryptInterface.h"
 
 @interface ImportViewController ()
 @property NSArray* messages;

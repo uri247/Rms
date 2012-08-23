@@ -20,5 +20,11 @@ typedef unsigned long HANDLE;
 typedef HANDLE HCRYPTPROV;
 typedef HANDLE HCRYPTKEY;
 
+#ifdef __cplusplus
+#define __EXTERN_C_ extern "C"
+#else
+#define __EXTERN_C_
+#endif
+
 
 #endif

@@ -1,16 +1,13 @@
 //
-//  EayP.cpp
+//  CryptOnOpenSSL.cpp
 //  SecGames
 //
-//  Created by Uri London on 8/20/12.
+//  Created by Uri London on 8/23/12.
 //  Copyright (c) 2012 Uri London. All rights reserved.
 //
 
 #include <memory>
-#include <cstring>
-#include <openssl/rsa.h>
-#include "CapiOnEay.h"
-#include "EayP.h"
+#include "CryptOnOpenSSL.h"
 #include "CryptoData.h"
 
 int lend_tobn( BIGNUM *bn, unsigned char *bin, int binlen )
@@ -29,7 +26,7 @@ int lend_tobn( BIGNUM *bn, unsigned char *bin, int binlen )
 
 
 
-RsaKey::RsaKey( Context* pctx, BYTE* pdata, DWORD dataLen, DWORD flags )
+RsaKey::RsaKey( BYTE* pdata, DWORD dataLen, DWORD flags )
 {
     RSA* rsa;
     
@@ -76,7 +73,7 @@ RsaKey::Decrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen )
     std::unique_ptr<BYTE[]> output( new BYTE[dataLen] );
     //BYTE output[128];
     RSA_private_decrypt( dataLen, input.get(), output.get(), m_eayRsa, RSA_PKCS1_OAEP_PADDING );
-
+    
     std::memcpy( pdata, output.get(), dataLen );
     
 }
@@ -87,6 +84,4 @@ RsaKey::Encrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen, DWORD bu
 {
     return;
 }
-
-
 

@@ -8,10 +8,13 @@
 
 #include <memory>
 #include <AssertMacros.h>
-#include <openssl/evp.h>
-#include <openssl/rsa.h>
-#include "CapiOnEay.h"
-#include "EayP.h"
+#include "CryptInterface.h"
+#include "Crypt.h"
+#include "CryptOnOpenSSL.h"
+
+typedef ContextType<RsaKey> OpenSSLContext;
+
+typedef OpenSSLContext Context;
 
 
 bool CryptAcquireContext( HCRYPTPROV* phprov )
