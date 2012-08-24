@@ -18,19 +18,19 @@
 #define CryptImportKey CryptImportKeyOssl
 #define CryptDecrypt CryptDecryptOssl
 #else
-#define CryptAcquireContext CryptAcquireContextKeyc
-#define CryptImportKey CryptImportKeyKeyc
-#define CryptDecrypt CryptDecryptKeyc
+#define CryptAcquireContext CryptAcquireContextKchn
+#define CryptImportKey CryptImportKeyKchk
+#define CryptDecrypt CryptDecryptKchn
 #endif
 
 
 __EXTERN_C_ bool CryptAcquireContextOssl( HCRYPTPROV* phprov );
-__EXTERN_C_ bool CryptAcquireContextKeyc( HCRYPTPROV* phprov );
+__EXTERN_C_ bool CryptAcquireContextKchn( HCRYPTPROV* phprov );
 
 __EXTERN_C_ bool CryptImportKeyOssl( HCRYPTPROV hprov, BYTE* pdata, DWORD dataLen, DWORD flags, HCRYPTKEY* hkey );
-__EXTERN_C_ bool CryptImportKeyKeyc( HCRYPTPROV hprov, BYTE* pdata, DWORD dataLen, DWORD flags, HCRYPTKEY* hkey );
+__EXTERN_C_ bool CryptImportKeyKchn( HCRYPTPROV hprov, BYTE* pdata, DWORD dataLen, DWORD flags, HCRYPTKEY* hkey );
 
 __EXTERN_C_ bool CryptDecryptOssl( HCRYPTKEY hkey, bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen );
-__EXTERN_C_ bool CryptDecryptKeyc( HCRYPTKEY hkey, bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen );
+__EXTERN_C_ bool CryptDecryptKchn( HCRYPTKEY hkey, bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen );
     
 #endif

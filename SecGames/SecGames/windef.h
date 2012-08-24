@@ -20,6 +20,23 @@ typedef unsigned long HANDLE;
 typedef HANDLE HCRYPTPROV;
 typedef HANDLE HCRYPTKEY;
 
+
+typedef struct _PUBLICKEYSTRUC {
+    BYTE    bType;
+    BYTE    bVersion;
+    WORD    reserved;
+    ALG_ID  aiKeyAlg;
+} BLOBHEADER;
+
+
+typedef struct _RSAPUBKEY {
+    DWORD   magic;                  // Has to be RSA1 or RSA2
+    DWORD   bitlen;                 // # of bits in modulus
+    DWORD   pubexp;                 // public exponent
+    // Modulus data follows
+} RSAPUBKEY;
+
+
 #ifdef __cplusplus
 #define __EXTERN_C_ extern "C"
 #else

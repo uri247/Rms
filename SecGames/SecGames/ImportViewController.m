@@ -29,19 +29,35 @@
 - (IBAction)importPressed {
     NSString* original = [NSString stringWithUTF8String:rsaMsg.msg];
     self.originalLabel.text = original;
-    HCRYPTPROV hprov;
-    HCRYPTKEY hkey;
-    
-    CryptAcquireContext( &hprov );
-    CryptImportKey(hprov, (BYTE*)&prvKeyExtract, sizeof(prvKeyExtract), 0, &hkey);
-    
-    DWORD dataLen = rsaMsg.size;
+    HCRYPTPROV hprovOssl, hprovKchn;
+    HCRYPTKEY hkeyOssl, hkeyKchn;
     BYTE buffer[400];
-    memcpy( buffer, rsaMsg.cipher, dataLen );
-    CryptDecrypt( hkey, true, 0, buffer, &dataLen );
+    DWORD dataLen;
     
+    //
+    // Via OpenSSL
+    //
+    
+    CryptAcquireContextOssl( &hprovOssl );
+    CryptImportKeyOssl(hprovOssl, (BYTE*)&prvKeyExtract, sizeof(prvKeyExtract), 0, &hkeyOssl);
+    dataLen = rsaMsg.size;
+    memcpy( buffer, rsaMsg.cipher, dataLen );
+    CryptDecryptOssl( hkeyOssl, true, 0, buffer, &dataLen );
     NSString* clear = [NSString stringWithUTF8String:(const char*)buffer];
     self.decipheredLabel.text = clear;
+    
+    
+    //
+    // Via KeyChain
+    //
+    
+    CryptAcquireContextKchn( &hprovKchn );
+    CryptImportKeyKchn(hprovKchn, (BYTE*)privateKeyBlob, sizeof(privateKeyBlob), 0, &hkeyKchn );
+    dataLen = rsaMsg.size;
+    memcpy( buffer, rsaMsg.cipher, dataLen );
+    CryptDecrypt( hkeyKchn, true, 0, buffer, &dataLen );
+    NSString* clear2 = [NSString stringWithUTF8String:(const char*)buffer];
+    NSLog( @"%@", clear2 );
 }
 
 

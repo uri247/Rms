@@ -41,7 +41,6 @@ bool CryptImportKey( HCRYPTPROV hprov, BYTE* pdata, DWORD dataLen, DWORD flags, 
     return true;
 }
     
-
 bool CryptDecrypt( HCRYPTKEY hkey, bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen )
 {
     check(hkey);
@@ -72,7 +71,7 @@ bool CryptImportKeyOssl( HCRYPTPROV hprov, BYTE* pdata, DWORD dataLen, DWORD fla
 }
 
 bool CryptImportKeyKchn( HCRYPTPROV hprov, BYTE* pdata, DWORD dataLen, DWORD flags, HCRYPTKEY* phkey ) {
-    return CryptImportKey<OpenSSLContext>( hprov, pdata, dataLen, flags, phkey );
+    return CryptImportKey<KeyChainContext>( hprov, pdata, dataLen, flags, phkey );
 }
 
 
