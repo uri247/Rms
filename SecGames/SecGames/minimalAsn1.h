@@ -1,19 +1,20 @@
+// Copyright (c) 2012 Microsoft corporation. All rights reserved.
 //
-//  minimalAsn1.h
-//  SecGames
+// File Name:   minimalAsn1.h
 //
-//  Created by Uri London on 8/24/12.
-//  Copyright (c) 2012 Uri London. All rights reserved.
+// Synopsis:    The minimum ASN.1 that we need in order to import/export cryptographic keys to
+//              Apple security key chain.
+//
+// Author:      Uri London (v-uril@microsoft.com)
 //
 
-#ifndef __SecGames__minimalAsn1__
-#define __SecGames__minimalAsn1__
+#ifndef __minimalAsn1_h_
+#define __minimalAsn1_h_
 
-#include <memory>
 #include "windef.h"
 
 
 void minimalAsn1PrivKey( BYTE* privKeyBlob, DWORD privKeyLength, BYTE** privKeyAsn1Blob, DWORD* privKeyAsn1Length );
 
 
-#endif /* defined(__SecGames__minimalAsn1__) */
+#endif

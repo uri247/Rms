@@ -1,9 +1,11 @@
+// Copyright (c) 2012 Microsoft corporation. All rights reserved.
 //
-//  minimalAsn1.cpp
-//  SecGames
+// File Name:   minimalAsn1.h
 //
-//  Created by Uri London on 8/24/12.
-//  Copyright (c) 2012 Uri London. All rights reserved.
+// Synopsis:    The minimum ASN.1 that we need in order to import/export cryptographic keys to
+//              Apple security key chain.
+//
+// Author:      Uri London (v-uril@microsoft.com)
 //
 
 #include <memory>

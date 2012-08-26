@@ -1,14 +1,17 @@
+// Copyright (c) 2012 Microsoft corporation. All rights reserved.
 //
-//  Header.h
-//  SecGames
+// File Name:   Crypt.h
 //
-//  Created by Uri London on 8/20/12.
-//  Copyright (c) 2012 Uri London. All rights reserved.
+// Synopsis:    Contains classes which implements the provider-independent implementation of the
+//              IpcOSCryptXxxx classes. It is a library internal header
+//
+// Author:      Uri London (v-uril@microsoft.com)
 //
 
 #ifndef SecGames_Header_h
 #define SecGames_Header_h
 
+#include <mutex>
 #include "windef.h"
 #include "Handle.h"
 
@@ -24,10 +27,20 @@ class CKey;
 
 class CContext : public CHandle
 {
+private:
+    std::mutex m_refLock;
+    int m_refCount;
+
+    
 public:
-    CContext( ) : CHandle(magic_Context) { }
+    CContext( ) : CHandle(magic_Context) { m_refCount = 0; }
     virtual CKey* importKey( BYTE* pdata, DWORD dataLen, DWORD flags ) =0;
     virtual CKey* genKey( ) =0;
+    bool addRef( );
+    void release( );
+    virtual ~CContext( )
+    {
+    }
 };
 
 
@@ -48,6 +61,9 @@ public:
     CKey* genKey( ) {
         return NULL;
     }
+    ~ContextType( )
+    {
+    }
 };
 
 
@@ -63,10 +79,12 @@ public:
 };
 
 
+
 class CRandom : public CHandle
 {
 public:
     CRandom( ) : CHandle(magic_Random) { }
+    
     
 };
 

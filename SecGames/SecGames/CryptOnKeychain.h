@@ -1,13 +1,14 @@
+// Copyright (c) 2012 Microsoft corporation. All rights reserved.
 //
-//  CryptOnKeychain.h
-//  SecGames
+// File Name:   CryptOnKeychain
 //
-//  Created by Uri London on 8/23/12.
-//  Copyright (c) 2012 Uri London. All rights reserved.
+// Synopsis:    Implementation of RsaKey interface on top of Apple's iOS Security Key Chain framework.
+//
+// Author:      Uri London (v-uril@microsoft.com)
 //
 
-#ifndef __SecGames__CryptOnKeychain__
-#define __SecGames__CryptOnKeychain__
+#ifndef __CryptOnKeychain_h_
+#define __CryptOnKeychain_h_
 
 #include <string>
 #include "windef.h"
@@ -29,5 +30,4 @@ public:
 
 };
 
-
-#endif /* defined(__SecGames__CryptOnKeychain__) */
+#endif

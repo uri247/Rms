@@ -46,7 +46,7 @@
     CryptDecrypt( hkeyOssl, true, 0, buffer, &dataLen );
     NSString* clear = [NSString stringWithUTF8String:(const char*)buffer];
     self.recoveredWithOssl.text = clear;
-    
+    CryptReleaseContext( hprovOssl );
     
     //
     // Via KeyChain
@@ -59,6 +59,7 @@
     CryptDecrypt( hkeyKchn, true, 0, buffer, &dataLen );
     NSString* clear2 = [NSString stringWithUTF8String:(const char*)buffer];
     self.recoveredWithKchn.text = clear2;
+    CryptReleaseContext( hprovKchn );
 }
 
 

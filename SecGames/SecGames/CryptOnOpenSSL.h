@@ -1,13 +1,15 @@
+// Copyright (c) 2012 Microsoft corporation. All rights reserved.
 //
-//  CryptOnOpenSSL.h
-//  SecGames
+// File Name:   CryptOnOpenSSL.h
 //
-//  Created by Uri London on 8/23/12.
-//  Copyright (c) 2012 Uri London. All rights reserved.
+// Synopsis:    Contains the definition of class ossl_RsaKey. this class uses OpenSSL library RSA object
+//              to perform its operations
+//
+// Author:      Uri London (v-uril@microsoft.com)
 //
 
-#ifndef __SecGames__CryptOnOpenSSL__
-#define __SecGames__CryptOnOpenSSL__
+#ifndef __CryptOnOpenSSL_h_
+#define __CryptOnOpenSSL_h_
 
 #include <openssl/evp.h>
 #include <openssl/rsa.h>
@@ -30,4 +32,4 @@ public:
 
 
 
-#endif /* defined(__SecGames__CryptOnOpenSSL__) */
+#endif

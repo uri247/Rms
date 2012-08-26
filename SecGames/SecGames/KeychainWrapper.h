@@ -1,10 +1,12 @@
+// Copyright (c) 2012 Microsoft corporation. All rights reserved.
 //
-//  KeychainWrapper.h
-//  SecGames
+// File Name:   KeychainWrapper.h
 //
-//  Created by Uri London on 8/23/12.
-//  Copyright (c) 2012 Uri London. All rights reserved.
+// Synopsis:    A wrapper arround some Cocoa security key chain API, callable from C++ code
 //
+// Author:      Uri London (v-uril@microsoft.com)
+//
+
 
 
 #include "windef.h"

@@ -1,9 +1,10 @@
+// Copyright (c) 2012 Microsoft corporation. All rights reserved.
 //
-//  CryptOnOpenSSL.cpp
-//  SecGames
+// File Name:   CryptOnOpenSSL.cpp
 //
-//  Created by Uri London on 8/23/12.
-//  Copyright (c) 2012 Uri London. All rights reserved.
+// Synopsis:    Implementation of RsaKey interface using the OpenSSL library.
+//
+// Author:      Uri London (v-uril@microsoft.com)
 //
 
 #include <memory>

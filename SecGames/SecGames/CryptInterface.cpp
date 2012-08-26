@@ -31,9 +31,8 @@ typedef ContextType<kchn_RsaKey, int, CRandom, int> KeyChainContext;
 template<class CTX>
 bool CryptAcquireContext( HCRYPTPROV* phprov )
 {
-    CTX* pctx = new CTX( );
-    HCRYPTPROV hprov = (HCRYPTPROV)pctx;
-    *phprov = hprov;
+    CContext* pctx = new CTX( );    
+    *phprov = CHandle::c2h( pctx );
     return true;
 }
 
@@ -43,6 +42,20 @@ bool CryptAcquireContextOssl( HCRYPTPROV* phprov )    { return CryptAcquireConte
 bool CryptAcquireContextKchn( HCRYPTPROV* phprov )    { return CryptAcquireContext<KeyChainContext>( phprov ); }
 
 
+
+bool CryptContextAddRef( HCRYPTPROV hprov )
+{
+    CContext* pctx = CHandle::h2c<CContext>( hprov );
+    pctx->addRef( );
+    return true;
+}
+
+bool CryptReleaseContext( HCRYPTPROV hprov )
+{
+    CContext* pctx = CHandle::h2c<CContext>( hprov );
+    pctx->release( );
+    return true;
+}
 
 bool CryptImportKey( HCRYPTPROV hprov, BYTE* pdata, DWORD dataLen, DWORD flags, HCRYPTKEY* phkey )
 {

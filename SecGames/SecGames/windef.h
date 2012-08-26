@@ -46,4 +46,9 @@ typedef struct _RSAPUBKEY {
 #endif
 
 
+#define ERROR_INVALID_HANDLE     6L
+
+
+
+
 #endif
