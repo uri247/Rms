@@ -21,7 +21,8 @@
     struct CMsgData* msgs[4];
 }
 @synthesize originalLabel = _originalLabel;
-@synthesize decipheredLabel = _decipheredLabel;
+@synthesize recoveredWithOssl = _decipheredLabel;
+@synthesize recoveredWithKchn = _recoveredViewKchn;
 @synthesize picker = _picker;
 @synthesize messages = _messages;
 
@@ -39,12 +40,12 @@
     //
     
     CryptAcquireContextOssl( &hprovOssl );
-    CryptImportKeyOssl(hprovOssl, (BYTE*)&prvKeyExtract, sizeof(prvKeyExtract), 0, &hkeyOssl);
+    CryptImportKey(hprovOssl, (BYTE*)&prvKeyExtract, sizeof(prvKeyExtract), 0, &hkeyOssl);
     dataLen = rsaMsg.size;
     memcpy( buffer, rsaMsg.cipher, dataLen );
-    CryptDecryptOssl( hkeyOssl, true, 0, buffer, &dataLen );
+    CryptDecrypt( hkeyOssl, true, 0, buffer, &dataLen );
     NSString* clear = [NSString stringWithUTF8String:(const char*)buffer];
-    self.decipheredLabel.text = clear;
+    self.recoveredWithOssl.text = clear;
     
     
     //
@@ -52,12 +53,12 @@
     //
     
     CryptAcquireContextKchn( &hprovKchn );
-    CryptImportKeyKchn(hprovKchn, (BYTE*)privateKeyBlob, sizeof(privateKeyBlob), 0, &hkeyKchn );
+    CryptImportKey(hprovKchn, (BYTE*)privateKeyBlob, sizeof(privateKeyBlob), 0, &hkeyKchn );
     dataLen = rsaMsg.size;
     memcpy( buffer, rsaMsg.cipher, dataLen );
     CryptDecrypt( hkeyKchn, true, 0, buffer, &dataLen );
     NSString* clear2 = [NSString stringWithUTF8String:(const char*)buffer];
-    NSLog( @"%@", clear2 );
+    self.recoveredWithKchn.text = clear2;
 }
 
 
@@ -91,8 +92,9 @@
 - (void)viewDidUnload
 {
     [self setOriginalLabel:nil];
-    [self setDecipheredLabel:nil];
+    [self setRecoveredWithOssl:nil];
     [self setPicker:nil];
+    [self setRecoveredWithKchn:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

@@ -11,7 +11,9 @@
 @interface ImportViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *originalLabel;
-@property (weak, nonatomic) IBOutlet UILabel *decipheredLabel;
+@property (weak, nonatomic) IBOutlet UILabel *recoveredWithOssl;
+
+@property (weak, nonatomic) IBOutlet UILabel *recoveredWithKchn;
 @property (weak, nonatomic) IBOutlet UIPickerView *picker;
 
 @end

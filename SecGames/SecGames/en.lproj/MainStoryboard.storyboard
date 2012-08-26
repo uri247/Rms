@@ -200,7 +200,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Decrypted with OpenSSL:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="hII-1d-M6J">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Decrypted with Key Chain:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="hII-1d-M6J">
                                 <rect key="frame" x="20" y="106" width="148" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -212,9 +212,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Import" id="gh3-z2-LLT"/>
                     <connections>
-                        <outlet property="decipheredLabel" destination="b42-GH-nhS" id="zUc-uT-bke"/>
                         <outlet property="originalLabel" destination="ZQq-TX-DjV" id="C8N-iw-jMw"/>
                         <outlet property="picker" destination="QnB-Vb-swL" id="HeB-gL-d0e"/>
+                        <outlet property="recoveredWithKchn" destination="SVf-HD-ovL" id="sPk-AS-M6R"/>
+                        <outlet property="recoveredWithOssl" destination="b42-GH-nhS" id="Iqb-jg-EDy"/>
                     </connections>
                 </viewController>
             </objects>
@@ -310,6 +311,8 @@
                 <relationship kind="outlet" name="decipheredLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="originalLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="picker" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="recoveredWithKchn" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="recoveredWithOssl" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="SegViewController" superclassName="UIViewController">

@@ -16,6 +16,7 @@
 		1604865C15D291E70048BF64 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1604865A15D291E70048BF64 /* MainStoryboard.storyboard */; };
 		1604865F15D291E70048BF64 /* SegViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1604865E15D291E70048BF64 /* SegViewController.m */; };
 		1604866615D292650048BF64 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1604866515D292650048BF64 /* Security.framework */; };
+		1640B4BA15E9E72800DDBF1E /* Handle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1640B4B815E9E72800DDBF1E /* Handle.cpp */; };
 		16CE9B6615E38070004471EF /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16CE9B6515E38070004471EF /* libcrypto.a */; };
 		16CE9BB215E63B61004471EF /* CryptOnOpenSSL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE9BB015E63B61004471EF /* CryptOnOpenSSL.cpp */; };
 		16CE9BB515E63B88004471EF /* CryptOnKeychain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE9BB315E63B88004471EF /* CryptOnKeychain.cpp */; };
@@ -44,6 +45,8 @@
 		1604865D15D291E70048BF64 /* SegViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegViewController.h; sourceTree = "<group>"; };
 		1604865E15D291E70048BF64 /* SegViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegViewController.m; sourceTree = "<group>"; };
 		1604866515D292650048BF64 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		1640B4B815E9E72800DDBF1E /* Handle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Handle.cpp; sourceTree = "<group>"; };
+		1640B4B915E9E72800DDBF1E /* Handle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Handle.h; sourceTree = "<group>"; };
 		16CE9B6515E38070004471EF /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../3rd/openssl/lib/libcrypto.a; sourceTree = "<group>"; };
 		16CE9B7715E3C98B004471EF /* windef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = windef.h; sourceTree = "<group>"; };
 		16CE9BB015E63B61004471EF /* CryptOnOpenSSL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CryptOnOpenSSL.cpp; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 				16CE9BBF15E69786004471EF /* KeychainWrapper.m */,
 				16CE9BC115E7C165004471EF /* minimalAsn1.cpp */,
 				16CE9BC215E7C165004471EF /* minimalAsn1.h */,
+				1640B4B815E9E72800DDBF1E /* Handle.cpp */,
+				1640B4B915E9E72800DDBF1E /* Handle.h */,
 			);
 			name = Crypt;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 				16CE9BB515E63B88004471EF /* CryptOnKeychain.cpp in Sources */,
 				16CE9BC015E69786004471EF /* KeychainWrapper.m in Sources */,
 				16CE9BC315E7C165004471EF /* minimalAsn1.cpp in Sources */,
+				1640B4BA15E9E72800DDBF1E /* Handle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

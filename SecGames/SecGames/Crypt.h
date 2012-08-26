@@ -10,50 +10,64 @@
 #define SecGames_Header_h
 
 #include "windef.h"
+#include "Handle.h"
+
+class CContext;
+class CKey;
 
 
-// big endian magic
-DWORD const magic_Context = ('C'<<24 | 'N'<<16 | 'T'<<8 | 'X');
-DWORD const magic_Key = ('K'<<24 | 'K'<<16 | 'E'<<8 | 'Y');
+//
+//
+// Base class of CContext. This is an abstract class that contains decleration of several virtual funcitons,
+// actually defined in the template derived from this class
+//
 
-
-class CryptBase
+class CContext : public CHandle
 {
-private:
-    DWORD m_magic;
-    
-protected:
-    CryptBase( DWORD magic ) : m_magic(magic) { }
-    
 public:
-    DWORD magic() { return m_magic; }
+    CContext( ) : CHandle(magic_Context) { }
+    virtual CKey* importKey( BYTE* pdata, DWORD dataLen, DWORD flags ) =0;
+    virtual CKey* genKey( ) =0;
 };
 
 
-template<class KEY>
-class ContextType : public CryptBase
+template<class RSAKEY, class AESKEY, class RND, class HASH>
+class ContextType : public CContext
 {
 public:
-    typedef KEY KeyType;
+    typedef RSAKEY TyRsaKey;
+    typedef AESKEY TyAesKey;
+    typedef RND TyRandom;
+    typedef HASH TyHash;
     
 public:
-    ContextType( ) : CryptBase(magic_Context) { }
-    KEY* importKey( BYTE* pdata, DWORD dataLen, DWORD flags ) {
-        return new KEY( pdata, dataLen, flags );
+    ContextType( ) { }
+    CKey* importKey( BYTE* pdata, DWORD dataLen, DWORD flags ) {
+        return new TyRsaKey( pdata, dataLen, flags );
+    }
+    CKey* genKey( ) {
+        return NULL;
     }
 };
 
 
 
-class Key : public CryptBase
+class CKey : public CHandle
 {
 public:
-    Key( ) : CryptBase(magic_Key) { }
+    CKey( ) : CHandle(magic_Key) { }
 
 public:
     virtual void Decrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen ) =0;
     virtual void Encrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen, DWORD bufLen ) =0;
+};
 
+
+class CRandom : public CHandle
+{
+public:
+    CRandom( ) : CHandle(magic_Random) { }
+    
 };
 
 

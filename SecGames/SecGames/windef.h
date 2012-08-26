@@ -9,6 +9,7 @@
 #ifndef SecGames_windef_h
 #define SecGames_windef_h
 
+#include <stddef.h>
 
 typedef unsigned char BYTE;
 typedef unsigned short WORD;
@@ -19,6 +20,7 @@ typedef unsigned int ALG_ID;
 typedef unsigned long HANDLE;
 typedef HANDLE HCRYPTPROV;
 typedef HANDLE HCRYPTKEY;
+
 
 
 typedef struct _PUBLICKEYSTRUC {

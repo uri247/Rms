@@ -14,7 +14,7 @@
 #include "Crypt.h"
 
 
-class kchn_RsaKey : public Key
+class kchn_RsaKey : public CKey
 {
 private:
     std::string m_tag;

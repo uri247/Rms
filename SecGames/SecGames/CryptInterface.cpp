@@ -1,9 +1,17 @@
+// Copyright (c) 2012 Microsoft corporation. All rights reserved.
 //
-//  CapiOnEay.cpp
-//  SecGames
+// File Name:   CryptInerface.cpp
 //
-//  Created by Uri London on 8/20/12.
-//  Copyright (c) 2012 Uri London. All rights reserved.
+// Synopsis:    This file contains tye IpcOsCryptXXX interfaces. These are C-sytle methods heavily inspired
+//              by Win32 CAPI functions. This is a thin layer that delegates most of the work to the various
+//              classes (CContext for provider context, CKey for encryption/decryption, CHash for hash, etc.)
+//
+//              The "root" funciton - CryptAcquireContext - is templetize. It may return various templates,
+//              depends on the requirements. The context is a collection of provider classes using a different
+//              platform. For example, the ossl_RsaKey provides Rsa functionality on top of OpenSSL while
+//              kchn_RsaKey implements the same functionality on top of iOS securtiy Key Chain.
+//
+// Author:      Uri London (v-uril@microsoft.com)
 //
 
 #include <memory>
@@ -14,8 +22,10 @@
 #include "CryptOnOpenSSL.h"
 #include "CryptOnKeychain.h"
 
-typedef ContextType<ossl_RsaKey> OpenSSLContext;
-typedef ContextType<kchn_RsaKey> KeyChainContext;
+
+typedef ContextType<ossl_RsaKey, int, CRandom, int> OpenSSLContext;
+typedef ContextType<kchn_RsaKey, int, CRandom, int> KeyChainContext;
+
 
 
 template<class CTX>
@@ -27,51 +37,28 @@ bool CryptAcquireContext( HCRYPTPROV* phprov )
     return true;
 }
 
-template<class CTX>
+// Overcome an Object-C limitation of not having templates. These two functions are poor-language's
+// "template instantiation" with specific arguments
+bool CryptAcquireContextOssl( HCRYPTPROV* phprov )    { return CryptAcquireContext<OpenSSLContext>( phprov ); }
+bool CryptAcquireContextKchn( HCRYPTPROV* phprov )    { return CryptAcquireContext<KeyChainContext>( phprov ); }
+
+
+
 bool CryptImportKey( HCRYPTPROV hprov, BYTE* pdata, DWORD dataLen, DWORD flags, HCRYPTKEY* phkey )
-{    
-    check(hprov);
-    CTX* pctx = (CTX*)hprov;
-        
-    typename CTX::KeyType* pkey;    
-    pkey = pctx->importKey(pdata, dataLen, flags );
-    
-    *phkey = (HCRYPTKEY)pkey;
-    
+{
+    CContext* pctx = CHandle::h2c<CContext>( hprov );
+    CKey* pkey = pctx->importKey(pdata, dataLen, flags);
+    *phkey = CHandle::c2h( pkey );
     return true;
 }
-    
+
+
 bool CryptDecrypt( HCRYPTKEY hkey, bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen )
 {
     check(hkey);
-    Key* pkey = (Key*)hkey;
-    check( pkey->magic() == magic_Key );
+    CKey* pkey = CHandle::h2c<CKey>(hkey);
     pkey->Decrypt(final, flags, pdata, pdataLen);
     return true;
-}
-
-
-
-//
-// If only objective-C had the אemplates, these dispatch boilerplate wouldn't be necessary. These
-// methods dispatch between the two instances of the Crypt templated functions.
-//
-
-bool CryptAcquireContextOssl( HCRYPTPROV* phprov ) {
-    return CryptAcquireContext<OpenSSLContext>( phprov );
-}
-
-bool CryptAcquireContextKchn( HCRYPTPROV* phprov ) {
-    return CryptAcquireContext<KeyChainContext>( phprov );
-}
-
-
-bool CryptImportKeyOssl( HCRYPTPROV hprov, BYTE* pdata, DWORD dataLen, DWORD flags, HCRYPTKEY* phkey ) {
-    return CryptImportKey<OpenSSLContext>( hprov, pdata, dataLen, flags, phkey );
-}
-
-bool CryptImportKeyKchn( HCRYPTPROV hprov, BYTE* pdata, DWORD dataLen, DWORD flags, HCRYPTKEY* phkey ) {
-    return CryptImportKey<KeyChainContext>( hprov, pdata, dataLen, flags, phkey );
 }
 
 

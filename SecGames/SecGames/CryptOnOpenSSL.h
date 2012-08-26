@@ -15,7 +15,7 @@
 #include "Crypt.h"
 
 
-class ossl_RsaKey : public Key
+class ossl_RsaKey : public CKey
 {
 private:
     RSA* m_eayRsa;
