@@ -46,3 +46,9 @@ void kchn_RsaKey::Encrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen
 {
 
 }
+
+
+void CRandom::gen( DWORD len, BYTE* buffer )
+{
+    randomCopyBytes(len, buffer);
+};

@@ -17,6 +17,7 @@
 
 class CContext;
 class CKey;
+class CRandom;
 
 
 //
@@ -27,20 +28,25 @@ class CKey;
 
 class CContext : public CHandle
 {
+public:
+    static DWORD class_magic() { return mk_magic('C','N','T','X'); }
+    
 private:
     std::mutex m_refLock;
     int m_refCount;
 
     
 public:
-    CContext( ) : CHandle(magic_Context) { m_refCount = 0; }
+    CContext( ) : CHandle(class_magic()) { m_refCount = 0; }
+    
     virtual CKey* importKey( BYTE* pdata, DWORD dataLen, DWORD flags ) =0;
     virtual CKey* genKey( ) =0;
+    virtual CRandom* getRandom( ) =0;
+    virtual ~CContext( ) { }
+
     bool addRef( );
     void release( );
-    virtual ~CContext( )
-    {
-    }
+
 };
 
 
@@ -58,11 +64,21 @@ public:
     CKey* importKey( BYTE* pdata, DWORD dataLen, DWORD flags ) {
         return new TyRsaKey( pdata, dataLen, flags );
     }
-    CKey* genKey( ) {
-        return NULL;
-    }
-    ~ContextType( )
-    {
+    CKey* genKey( ) { return NULL; }
+    ~ContextType( ) { }
+    CRandom* getRandom() { return new RND(); }
+};
+
+
+
+template <>
+class std::default_delete<CContext>
+{
+public:
+    void operator()( CContext* pctx ) {
+        if( pctx ) {
+            pctx->addRef();
+        }
     }
 };
 
@@ -71,7 +87,10 @@ public:
 class CKey : public CHandle
 {
 public:
-    CKey( ) : CHandle(magic_Key) { }
+    static DWORD class_magic() { return mk_magic('H','K','E','Y'); }
+
+public:
+    CKey( ) : CHandle(class_magic()) { }
 
 public:
     virtual void Decrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen ) =0;
@@ -79,13 +98,14 @@ public:
 };
 
 
-
 class CRandom : public CHandle
 {
 public:
-    CRandom( ) : CHandle(magic_Random) { }
+    static DWORD class_magic() { return mk_magic('P','R','N','G'); }
     
-    
+public:
+    CRandom( ) : CHandle(class_magic()) { }
+    void gen( DWORD len, BYTE* buffer );
 };
 
 

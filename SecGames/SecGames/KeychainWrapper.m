@@ -10,7 +10,7 @@
 // Author:      Uri London (v-uril)
 //
 
-
+#import <Security/SecRandom.h>
 #import "KeychainWrapper.h"
 
 
@@ -69,4 +69,11 @@ void decryptMsg( BYTE* cipher, BYTE* clear, unsigned long* plength, const char* 
 
     status = SecKeyDecrypt( keyRef, kSecPaddingOAEP, cipher, *plength, clear, plength );
     NSLog( @"status %ld", status );
+}
+
+
+
+void randomCopyBytes( int length, BYTE* buffer )
+{
+    SecRandomCopyBytes( kSecRandomDefault, length, buffer );
 }

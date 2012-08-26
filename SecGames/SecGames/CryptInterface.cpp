@@ -43,6 +43,7 @@ bool CryptAcquireContextKchn( HCRYPTPROV* phprov )    { return CryptAcquireConte
 
 
 
+
 bool CryptContextAddRef( HCRYPTPROV hprov )
 {
     CContext* pctx = CHandle::h2c<CContext>( hprov );
@@ -73,5 +74,20 @@ bool CryptDecrypt( HCRYPTKEY hkey, bool final, DWORD flags, BYTE* pdata, DWORD* 
     pkey->Decrypt(final, flags, pdata, pdataLen);
     return true;
 }
+
+bool CryptGenRandom( HCRYPTPROV hprov, DWORD len, BYTE* buffer )
+{
+    CContext* p = CHandle::h2c<CContext>( hprov );
+    p->addRef();
+    //std::unique_ptr<CContext,CContextDeleter> pctx(p);
+    std::unique_ptr<CContext> pctx(p);
+    
+    CRandom* prnd = pctx->getRandom( );
+    prnd->gen( len, buffer );
+    
+    return true;
+}
+
+
 
 

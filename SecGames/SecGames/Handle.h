@@ -20,11 +20,8 @@
 #include "windef.h"
 
 
-const WORD magic_Handle = ('H'<<8 | 'N');
-#define mk_magic(a,b) (magic_Handle<<16 | a<<8 | b)
-DWORD const magic_Context = mk_magic('T', 'X');
-DWORD const magic_Key     = mk_magic('K', 'E');
-DWORD const magic_Random  = mk_magic('R', 'N');
+
+#define mk_magic(a,b,c,d)    (a<<24 | b<<16 | c<<8 | d)
 
 
 //
@@ -38,18 +35,11 @@ private:
     
 public:
     CHandle( DWORD magic ) : m_magic(magic) { }
-    DWORD magic() { return m_magic; }
-    
-    // Convert handle to pointer. Currently, handles are simply pointers to structure. If we choose in the future
-    // to go to Dictionary style translation a-la Win32, this is the only place to change.
-    // Our integrity check isn't a boolet proof to say the least, but we do want to verify the second DWORD (immediately
-    // after the vptr is the magic
+
     template<class T> static T* h2c( HANDLE h ) {
         T* pointer = reinterpret_cast<T*>(h);
-        DWORD magic = *(reinterpret_cast<DWORD*>(pointer) + 1);
-        WORD mg = magic>>16;
-        if( mg != magic_Handle ) {
-            // Something went really wrong. We have an invalid handle
+        DWORD m = *(reinterpret_cast<DWORD*>(pointer) + 1);
+        if( m != T::class_magic() ) {
             throw (int)ERROR_INVALID_HANDLE;
         }
         return pointer;

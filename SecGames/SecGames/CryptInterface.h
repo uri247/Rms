@@ -32,6 +32,6 @@ __EXTERN_C_ bool CryptImportKey( HCRYPTPROV hprov, BYTE* pdata, DWORD dataLen, D
 __EXTERN_C_ bool CryptDecrypt( HCRYPTKEY hkey, bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen );
 __EXTERN_C_ bool CryptContextAddRef( HCRYPTPROV hprov );
 __EXTERN_C_ bool CryptReleaseContext( HCRYPTPROV hprov );
-
+__EXTERN_C_ bool CryptGenRandom( HCRYPTPROV hprov, DWORD len, BYTE* buffer );
 
 #endif
