@@ -9,6 +9,7 @@
 
 
 #include <memory>
+#include <CommonCrypto/CommonCryptor.h>
 #include "minimalAsn1.h"
 #include "KeychainWrapper.h"
 #include "CryptOnKeychain.h"
@@ -52,3 +53,36 @@ void CRandom::gen( DWORD len, BYTE* buffer )
 {
     randomCopyBytes(len, buffer);
 };
+
+
+
+cc_AesKey::cc_AesKey( BYTE* pdata, DWORD dataLen, DWORD flags )
+{
+    BLOBHEADER* header = (BLOBHEADER*)pdata;
+    DWORD* psize = (DWORD*)(header + 1);
+    BYTE* pkey = (BYTE*)(psize + 1);
+    DWORD size = *psize;
+    
+    // allocate buffer for the key and coppy
+    m_key.reset( new BYTE[size] );
+    memcpy( m_key.get(), pkey, size );
+}
+
+void cc_AesKey::Decrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen )
+{
+    CCCryptorStatus status;
+    std::unique_ptr<BYTE[]> dataOut;
+    
+    status = CCCrypt( kCCEncrypt, kCCAlgorithmAES128, 0, m_key.get(), m_keylen, NULL, pdata, *pdataLen, dataOut.get(), *pdataLen, pdataLen );
+    memcpy( pdata, dataOut.get(), *pdataLen );
+}
+
+void cc_AesKey::Encrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen, DWORD buflen )
+{
+    CCCryptorStatus status;
+    std::unique_ptr<BYTE[]> dataOut;
+    status = CCCrypt( kCCDecrypt, kCCAlgorithmAES128, 0, m_key.get(), m_keylen, NULL, pdata, *pdataLen, dataOut.get(), buflen, pdataLen );
+    memcpy( pdata, dataOut.get(), *pdataLen );
+}
+
+

@@ -26,8 +26,20 @@ public:
     virtual void Encrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen, DWORD bufLen );
     
     ~kchn_RsaKey( );
+};
 
 
+class cc_AesKey : public CKey
+{
+private:
+    std::string m_tag;
+    std::unique_ptr<BYTE[]> m_key;
+    int m_keylen;
+    
+public:
+    cc_AesKey( BYTE* pdata, DWORD dataLen, DWORD flags );
+    virtual void Decrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen );
+    virtual void Encrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen, DWORD buflen );
 };
 
 #endif

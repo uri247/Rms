@@ -11,6 +11,7 @@
 //
 
 #import <Security/SecRandom.h>
+#import <CommonCrypto/CommonCryptor.h>
 #import "KeychainWrapper.h"
 
 
@@ -47,6 +48,71 @@ void importPrivateRsaKey( BYTE* privKeyAsn1, unsigned int length, const char* ta
     [prvKeyAttr setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
     
     SecItemCopyMatching( (__bridge CFDictionaryRef)prvKeyAttr, (CFTypeRef*)&keyRef );
+}
+
+
+#define CSSM_ALGID_AES 
+
+
+void genAesKey( const char* tagSz )
+{
+    // create the tag
+    //NSData* tag = [NSData dataWithBytes:tagSz length:strlen(tagSz)+1];
+    
+}
+    
+/*
+- (void)generateSymmetricKey {
+	OSStatus sanityCheck = noErr;
+	uint8_t * symmetricKey = NULL;
+	
+	// First delete current symmetric key.
+	[self deleteSymmetricKey];
+	
+	// Container dictionary
+	NSMutableDictionary *symmetricKeyAttr = [[NSMutableDictionary alloc] init];
+	[symmetricKeyAttr setObject:(id)kSecClassKey forKey:(id)kSecClass];
+	[symmetricKeyAttr setObject:symmetricTag forKey:(id)kSecAttrApplicationTag];
+	[symmetricKeyAttr setObject:[NSNumber numberWithUnsignedInt:CSSM_ALGID_AES] forKey:(id)kSecAttrKeyType];
+	[symmetricKeyAttr setObject:[NSNumber numberWithUnsignedInt:(unsigned int)(kChosenCipherKeySize << 3)] forKey:(id)kSecAttrKeySizeInBits];
+	[symmetricKeyAttr setObject:[NSNumber numberWithUnsignedInt:(unsigned int)(kChosenCipherKeySize << 3)]	forKey:(id)kSecAttrEffectiveKeySize];
+	[symmetricKeyAttr setObject:(id)kCFBooleanTrue forKey:(id)kSecAttrCanEncrypt];
+	[symmetricKeyAttr setObject:(id)kCFBooleanTrue forKey:(id)kSecAttrCanDecrypt];
+	[symmetricKeyAttr setObject:(id)kCFBooleanFalse forKey:(id)kSecAttrCanDerive];
+	[symmetricKeyAttr setObject:(id)kCFBooleanFalse forKey:(id)kSecAttrCanSign];
+	[symmetricKeyAttr setObject:(id)kCFBooleanFalse forKey:(id)kSecAttrCanVerify];
+	[symmetricKeyAttr setObject:(id)kCFBooleanFalse forKey:(id)kSecAttrCanWrap];
+	[symmetricKeyAttr setObject:(id)kCFBooleanFalse forKey:(id)kSecAttrCanUnwrap];
+	
+	// Allocate some buffer space. I don't trust calloc.
+	symmetricKey = malloc( kChosenCipherKeySize * sizeof(uint8_t) );
+	
+	LOGGING_FACILITY( symmetricKey != NULL, @"Problem allocating buffer space for symmetric key generation." );
+	
+	memset((void *)symmetricKey, 0x0, kChosenCipherKeySize);
+	
+	sanityCheck = SecRandomCopyBytes(kSecRandomDefault, kChosenCipherKeySize, symmetricKey);
+	LOGGING_FACILITY1( sanityCheck == noErr, @"Problem generating the symmetric key, OSStatus == %d.", sanityCheck );
+	
+	self.symmetricKeyRef = [[NSData alloc] initWithBytes:(const void *)symmetricKey length:kChosenCipherKeySize];
+	
+	// Add the wrapped key data to the container dictionary.
+	[symmetricKeyAttr setObject:self.symmetricKeyRef
+                         forKey:(id)kSecValueData];
+	
+	// Add the symmetric key to the keychain.
+	sanityCheck = SecItemAdd((CFDictionaryRef) symmetricKeyAttr, NULL);
+	LOGGING_FACILITY1( sanityCheck == noErr || sanityCheck == errSecDuplicateItem, @"Problem storing the symmetric key in the keychain, OSStatus == %d.", sanityCheck );
+	
+	if (symmetricKey) free(symmetricKey);
+        [symmetricKeyAttr release];
+}
+
+*/
+
+void importAesKey( BYTE* aesKey, unsigned int length, const char* tag )
+{
+
 }
 
 
