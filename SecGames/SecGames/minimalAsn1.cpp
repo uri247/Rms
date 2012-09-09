@@ -89,6 +89,40 @@ void encodeLittleEndianInteger( BYTE*& dst, BYTE* src, DWORD len )
 }
 
 
+void minimalAsn1PubKey( BYTE* pubKeyBlob, DWORD pubKeyLength, BYTE** pubKeyAsn1Blob, DWORD* pubKeyAsn1Length )
+{
+    BLOBHEADER* header = (BLOBHEADER*)pubKeyBlob;
+    RSAPUBKEY* rsapub = (RSAPUBKEY*)(header+1);
+    
+    DWORD bytelen = rsapub->bitlen / 8;
+    DWORD exponent = rsapub->pubexp;
+    BYTE* modulus = (BYTE*)(rsapub+1);
+    
+    DWORD data_size =
+        encsizeLittleEndianInteger( modulus, bytelen ) +
+        encsizeLittleEndianInteger( (BYTE*)&exponent, log256(exponent) );
+    
+    DWORD buffer_size = 1 + lenLen(data_size) + data_size;
+    
+    // allocate
+    std::unique_ptr< BYTE[] > buff ( new BYTE[buffer_size] );
+    BYTE* dst = buff.get();
+
+    // encoding mark
+    *dst++ = ASN1MARK_SEQUANCE;
+    
+    // encode length
+    encodeLength( dst, data_size );
+    
+    // encode fields
+    encodeLittleEndianInteger( dst, modulus, bytelen );
+    encodeLittleEndianInteger( dst, (BYTE*)&exponent, log256(exponent) );
+
+    *pubKeyAsn1Blob = buff.release();
+    *pubKeyAsn1Length = buffer_size;
+}
+                                              
+
 void minimalAsn1PrivKey( BYTE* privKeyBlob, DWORD privKeyLength, BYTE** privKeyAsn1Blob, DWORD* privKeyAsn1Length )
 {
     // decompose the private key blob
@@ -108,15 +142,15 @@ void minimalAsn1PrivKey( BYTE* privKeyBlob, DWORD privKeyLength, BYTE** privKeyA
     BYTE* privExp = coefficient + bytelen/2;
     
     DWORD data_size =
-    encsizeLittleEndianInteger( &version, 1 ) +
-    encsizeLittleEndianInteger( modulus, bytelen ) +
-    encsizeLittleEndianInteger( (BYTE*)&exponent, log256(exponent) ) +
-    encsizeLittleEndianInteger( privExp, bytelen ) +
-    encsizeLittleEndianInteger( prime1, bytelen/2 ) +
-    encsizeLittleEndianInteger( prime2, bytelen/2 ) +
-    encsizeLittleEndianInteger( exp1, bytelen/2 ) +
-    encsizeLittleEndianInteger( exp2, bytelen/2 ) +
-    encsizeLittleEndianInteger( coefficient, bytelen/2 );
+        encsizeLittleEndianInteger( &version, 1 ) +
+        encsizeLittleEndianInteger( modulus, bytelen ) +
+        encsizeLittleEndianInteger( (BYTE*)&exponent, log256(exponent) ) +
+        encsizeLittleEndianInteger( privExp, bytelen ) +
+        encsizeLittleEndianInteger( prime1, bytelen/2 ) +
+        encsizeLittleEndianInteger( prime2, bytelen/2 ) +
+        encsizeLittleEndianInteger( exp1, bytelen/2 ) +
+        encsizeLittleEndianInteger( exp2, bytelen/2 ) +
+        encsizeLittleEndianInteger( coefficient, bytelen/2 );
     
     DWORD buffer_size = 1 + lenLen(data_size) + data_size;
     
@@ -124,7 +158,7 @@ void minimalAsn1PrivKey( BYTE* privKeyBlob, DWORD privKeyLength, BYTE** privKeyA
     std::unique_ptr< BYTE[] > buff (new BYTE[buffer_size] );
     BYTE* dst = buff.get();
     
-    // encode mark∫
+    // encode mark
     *dst++ = ASN1MARK_SEQUANCE;
     
     // encode length

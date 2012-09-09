@@ -19,6 +19,7 @@ class kchn_RsaKey : public CKey
 {
 private:
     std::string m_tag;
+    bool m_private;
 
 public:
     kchn_RsaKey( BYTE* pdata, DWORD dataLen, DWORD flags );
@@ -27,6 +28,7 @@ public:
     
     ~kchn_RsaKey( );
 };
+
 
 
 class cc_AesKey : public CKey

@@ -15,6 +15,45 @@
 #import "KeychainWrapper.h"
 
 
+void importPublicRsaKey( BYTE* pubKeyAsn1, unsigned int length, const char* tagSz )
+{
+    // create tag
+    NSString* tagSt = [NSString stringWithUTF8String:tagSz];
+    NSData* tag = [tagSt dataUsingEncoding:NSUTF8StringEncoding];
+
+    // key attributes dictionary
+    NSMutableDictionary* pubKeyAttr = [[NSMutableDictionary alloc] init];
+    [pubKeyAttr setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
+    [pubKeyAttr setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
+    [pubKeyAttr setObject:tag forKey:(__bridge id)kSecAttrApplicationTag];
+
+    // First, delete the key if something left from before
+    SecItemDelete((__bridge CFDictionaryRef)(pubKeyAttr));
+    
+    // more parameters to dictionary
+    NSData* pubKeyData = [NSData dataWithBytes:pubKeyAsn1 length:length];
+    [pubKeyAttr setObject:pubKeyData forKey:(__bridge id)kSecValueData];
+    [pubKeyAttr setObject:(__bridge id)kSecAttrKeyClassPrivate forKey:(__bridge id)kSecAttrKeyClass];
+    [pubKeyAttr setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecReturnPersistentRef];
+    
+    CFTypeRef persistKey;
+    OSStatus osStatus = SecItemAdd( (__bridge CFDictionaryRef)pubKeyAttr, &persistKey );
+    NSLog( @"status: %ld", osStatus );
+    if( persistKey ) {
+        CFRelease( persistKey );
+    }
+    
+    // test:
+    SecKeyRef keyRef = nil;
+    [pubKeyAttr removeObjectForKey:(__bridge id)kSecValueData];
+    [pubKeyAttr removeObjectForKey:(__bridge id)kSecReturnPersistentRef];
+    [pubKeyAttr setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecReturnRef];
+    [pubKeyAttr setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
+    
+    SecItemCopyMatching( (__bridge CFDictionaryRef)pubKeyAttr, (CFTypeRef*)&keyRef );
+}
+
+
 void importPrivateRsaKey( BYTE* privKeyAsn1, unsigned int length, const char* tagSz )
 {
     // create tag
@@ -116,27 +155,42 @@ void importAesKey( BYTE* aesKey, unsigned int length, const char* tag )
 }
 
 
+SecKeyRef getKey( const char* tagSz )
+{
+    OSStatus status;
+
+    // create tag
+    NSData* tag = [[NSString stringWithUTF8String:tagSz] dataUsingEncoding:NSUTF8StringEncoding];
+
+    SecKeyRef keyRef = nil;
+    NSMutableDictionary* keyAttr = [[NSMutableDictionary alloc] init];
+    [keyAttr setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
+    [keyAttr setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
+    [keyAttr setObject:tag forKey:(__bridge id)kSecAttrApplicationTag];
+    [keyAttr setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecReturnRef];
+    status = SecItemCopyMatching( (__bridge CFDictionaryRef)keyAttr, (CFTypeRef*)&keyRef );
+    NSLog( @"status %ld", status );
+    
+    return keyRef;
+}
+
+
 void decryptMsg( BYTE* cipher, BYTE* clear, unsigned long* plength, const char* tagSz )
 {
     OSStatus status;
-    
-    // create tag
-    NSString* tagSt = [NSString stringWithUTF8String:tagSz];
-    NSData* tag = [tagSt dataUsingEncoding:NSUTF8StringEncoding];
-
-    SecKeyRef keyRef = nil;    
-    NSMutableDictionary* prvKeyAttr = [[NSMutableDictionary alloc] init];
-    [prvKeyAttr setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
-    [prvKeyAttr setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
-    [prvKeyAttr setObject:tag forKey:(__bridge id)kSecAttrApplicationTag];
-    [prvKeyAttr setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecReturnRef];
-    status = SecItemCopyMatching( (__bridge CFDictionaryRef)prvKeyAttr, (CFTypeRef*)&keyRef );
-    NSLog( @"status %ld", status );
-
+    SecKeyRef keyRef = getKey( tagSz );
     status = SecKeyDecrypt( keyRef, kSecPaddingOAEP, cipher, *plength, clear, plength );
     NSLog( @"status %ld", status );
 }
 
+
+void encryptMsg( BYTE* clear, BYTE* cipher, unsigned long* plength, const char* tagSz )
+{
+    OSStatus status;
+    SecKeyRef keyRef = getKey( tagSz );
+    status = SecKeyEncrypt( keyRef, kSecPaddingOAEP, clear, *plength, cipher, plength );
+    NSLog( @"status %ld", status );
+}
 
 
 void randomCopyBytes( int length, BYTE* buffer )

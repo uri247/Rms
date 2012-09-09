@@ -20,10 +20,18 @@
 
 kchn_RsaKey::kchn_RsaKey( BYTE* pdata, DWORD dataLen, DWORD flags )
 {
+    BLOBHEADER* header = (BLOBHEADER*)pdata;
     BYTE* asn1Buff;
     DWORD asn1BuffLength;
-    minimalAsn1PrivKey( pdata, dataLen, &asn1Buff, &asn1BuffLength );
-    importPrivateRsaKey( asn1Buff, asn1BuffLength, "david" );
+    
+    if( header->bType == 0x06 ) {
+        minimalAsn1PubKey( pdata, dataLen, &asn1Buff, &asn1BuffLength );
+        importPublicRsaKey( asn1Buff, asn1BuffLength, "pubkey" );
+    }
+    else if( header->bType == 0x07 ) {
+        minimalAsn1PrivKey( pdata, dataLen, &asn1Buff, &asn1BuffLength );
+        importPrivateRsaKey( asn1Buff, asn1BuffLength, "prvkey" );
+    }
 }
 
 void kchn_RsaKey::Decrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen )
@@ -36,7 +44,7 @@ void kchn_RsaKey::Decrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen
     
     std::unique_ptr<BYTE[]> output( new BYTE[dataLen] );
 
-    decryptMsg( input.get(), output.get(), &dataLen, "david" );
+    decryptMsg( input.get(), output.get(), &dataLen, "prvkey" );
     
     
     std::memcpy( pdata, output.get(), dataLen );

@@ -79,7 +79,6 @@ bool CryptGenRandom( HCRYPTPROV hprov, DWORD len, BYTE* buffer )
 {
     CContext* p = CHandle::h2c<CContext>( hprov );
     p->addRef();
-    //std::unique_ptr<CContext,CContextDeleter> pctx(p);
     std::unique_ptr<CContext> pctx(p);
     
     CRandom* prnd = pctx->getRandom( );
@@ -87,7 +86,3 @@ bool CryptGenRandom( HCRYPTPROV hprov, DWORD len, BYTE* buffer )
     
     return true;
 }
-
-
-
-
