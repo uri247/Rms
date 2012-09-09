@@ -53,7 +53,14 @@ void kchn_RsaKey::Decrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen
 
 void kchn_RsaKey::Encrypt( bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen, DWORD bufLen )
 {
-
+    DWORD outLength = bufLen;
+    std::unique_ptr<BYTE[]> output( new BYTE[outLength] );
+    encryptMsg( pdata, output.get(), *pdataLen, &outLength, "pubkey" );
+    // assert( outLength < bufLen )
+    for( int i=0; i<outLength; ++i )  {
+        pdata[i] = output[ outLength -i - 1];
+    }
+    *pdataLen = outLength;
 }
 
 

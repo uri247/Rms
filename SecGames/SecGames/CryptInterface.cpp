@@ -75,6 +75,15 @@ bool CryptDecrypt( HCRYPTKEY hkey, bool final, DWORD flags, BYTE* pdata, DWORD* 
     return true;
 }
 
+bool CryptEncrypt( HCRYPTKEY hkey, bool final, DWORD flags, BYTE* pdata, DWORD* pdataLen, DWORD bufLen )
+{
+    check(hkey);
+    CKey* pkey = CHandle::h2c<CKey>(hkey);
+    pkey->Encrypt(final, flags, pdata, pdataLen, bufLen );
+    return true;
+}
+
+
 bool CryptGenRandom( HCRYPTPROV hprov, DWORD len, BYTE* buffer )
 {
     CContext* p = CHandle::h2c<CContext>( hprov );

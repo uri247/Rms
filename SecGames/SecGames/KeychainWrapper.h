@@ -15,5 +15,6 @@ __EXTERN_C_ void importPublicRsaKey( BYTE* pubKeyAsn1, unsigned int length, cons
 __EXTERN_C_ void importPrivateRsaKey( BYTE* privKeyAsn1, unsigned int length, const char* tag );
 __EXTERN_C_ char* getBundleIdentifier( );
 __EXTERN_C_ void decryptMsg( BYTE* cipher, BYTE* clear, unsigned long* plength, const char* tagSz );
+__EXTERN_C_ void encryptMsg( BYTE* clear, BYTE* cipher, unsigned long plength, unsigned long* buffLength, const char* tagSz );
 __EXTERN_C_ void randomCopyBytes( int length, BYTE* buffer );
 __EXTERN_C_ void importAesKey( BYTE* aesKey, unsigned int length, const char* tag );

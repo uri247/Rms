@@ -33,7 +33,7 @@ void importPublicRsaKey( BYTE* pubKeyAsn1, unsigned int length, const char* tagS
     // more parameters to dictionary
     NSData* pubKeyData = [NSData dataWithBytes:pubKeyAsn1 length:length];
     [pubKeyAttr setObject:pubKeyData forKey:(__bridge id)kSecValueData];
-    [pubKeyAttr setObject:(__bridge id)kSecAttrKeyClassPrivate forKey:(__bridge id)kSecAttrKeyClass];
+    [pubKeyAttr setObject:(__bridge id)kSecAttrKeyClassPublic forKey:(__bridge id)kSecAttrKeyClass];
     [pubKeyAttr setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecReturnPersistentRef];
     
     CFTypeRef persistKey;
@@ -184,11 +184,11 @@ void decryptMsg( BYTE* cipher, BYTE* clear, unsigned long* plength, const char* 
 }
 
 
-void encryptMsg( BYTE* clear, BYTE* cipher, unsigned long* plength, const char* tagSz )
+void encryptMsg( BYTE* clear, BYTE* cipher, unsigned long plength, unsigned long* buffLength, const char* tagSz )
 {
     OSStatus status;
     SecKeyRef keyRef = getKey( tagSz );
-    status = SecKeyEncrypt( keyRef, kSecPaddingOAEP, clear, *plength, cipher, plength );
+    status = SecKeyEncrypt( keyRef, kSecPaddingOAEP, clear, plength, cipher, buffLength );
     NSLog( @"status %ld", status );
 }
 

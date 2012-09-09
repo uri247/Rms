@@ -49,13 +49,21 @@
     CryptReleaseContext( hprovOssl );
     
     //
-    // Via KeyChain
+    // Import public key and encrypt
     //
     
     CryptAcquireContextKchn( &hprovKchn );
+    CryptImportKey( hprovKchn, (BYTE*)publicKeyBlob, sizeof(publicKeyBlob), 0, &hkeyKchn );
+    memcpy( buffer, rsaMsg.msg, strlen(rsaMsg.msg)+1 );
+    dataLen = strlen(rsaMsg.msg) + 1;
+    CryptEncrypt( hkeyKchn, true, 0, buffer, &dataLen, sizeof(buffer) );
+    
+    
+    //
+    // Decrypt
+    //
+    
     CryptImportKey(hprovKchn, (BYTE*)privateKeyBlob, sizeof(privateKeyBlob), 0, &hkeyKchn );
-    dataLen = rsaMsg.size;
-    memcpy( buffer, rsaMsg.cipher, dataLen );
     CryptDecrypt( hkeyKchn, true, 0, buffer, &dataLen );
     NSString* clear2 = [NSString stringWithUTF8String:(const char*)buffer];
     self.recoveredWithKchn.text = clear2;
